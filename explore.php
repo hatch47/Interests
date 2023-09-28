@@ -5,7 +5,7 @@ include "DBConnection.php"; // include the database connection file
 $user_id = $_SESSION['user_id'];
 
 // Select the names from the table
-$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, t.POSTDATE, ua.PROFILEPIC, t.ID
+$sql = "SELECT ua.USERNAME, t.TITLECONTENT, t.IMAGEURL, ua.DISPLAYNAME, t.POSTDATE, ua.PROFILEPIC, t.ID
         FROM USERACCOUNT ua
         LEFT JOIN POST t ON t.OWNERID = ua.ID
         WHERE t.ID IS NOT NULL
@@ -76,7 +76,7 @@ if (isset($_POST['newComment_button'])) {
     $post_id = $_POST['post_id']; // Get the post ID from the form
 
     // Retrieve post information
-    $post_query = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, t.POSTDATE, ua.PROFILEPIC, t.ID
+    $post_query = "SELECT ua.USERNAME, t.TITLECONTENT, t.IMAGEURL, ua.DISPLAYNAME, t.POSTDATE, ua.PROFILEPIC, t.ID
         FROM USERACCOUNT ua
         LEFT JOIN POST t ON t.OWNERID = ua.ID
         WHERE t.ID = ?
@@ -103,7 +103,8 @@ if (isset($_POST['newComment_button'])) {
                 echo "</tr>";
                 echo "<tr>";
                 echo "<td colspan='2' style='border: none; padding: 5px; background-color: white;'>";
-                echo "<h4 style='margin: 0 0 5px 0;'>". $row['CONTENT'] . "</h4>";
+                echo "<h4 style='margin: 0 0 5px 0;'>". $row['TITLECONTENT'] . "</h4>";
+                echo "<h4 style='margin: 0 0 5px 0;'>". $row['IMAGEURL'] . "</h4>";
                 // echo "<h6 style='color: dimgrey; margin: 0 0 5px;'>&#128151; 0 &nbsp; &#128257; 0 &nbsp; &#128172; 0</h6>";
                 // Check if there are any likes for the post with POSTID equal to $row['ID']
 $query_check_likes = "SELECT COUNT(*) AS like_count FROM POSTMETRICS WHERE POSTID = " . $row['ID'] . " AND Likes = 1";
@@ -248,7 +249,8 @@ if (mysqli_num_rows($result) > 0) {
         echo "</tr>";
         echo "<tr>";
         echo "<td colspan='2' style='border: none; padding: 5px; background-color: white;'>";
-        echo "<h4 style='margin: 0 0 5px 0;'>". $row['CONTENT'] . "</h4>";
+        echo "<h4 style='margin: 0 0 5px 0;'>". $row['TITLECONTENT'] . "</h4>";
+        echo "<h4 style='margin: 0 0 5px 0;'>". $row['IMAGEURL'] . "</h4>";
         // echo "<h6 style='color: dimgrey; margin: 0 0 5px;'>&#128151; 0 &nbsp; &#128257; 0 &nbsp; &#128172; 0</h6>";
         // Check if there are any likes for the post with POSTID equal to $row['ID']
 $query_check_likes = "SELECT COUNT(*) AS like_count FROM POSTMETRICS WHERE POSTID = " . $row['ID'] . " AND Likes = 1";
