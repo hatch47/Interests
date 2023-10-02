@@ -105,6 +105,7 @@ if (isset($_POST['newComment_button'])) {
                 echo "<td colspan='2' style='border: none; padding: 5px; background-color: white;'>";
                 echo "<h4 style='margin: 0 0 5px 0;'>". $row['TITLECONTENT'] . "</h4>";
                 echo "<h4 style='margin: 0 0 5px 0;'>". $row['IMAGEURL'] . "</h4>";
+                include "displayPosts.php";
                 // echo "<h6 style='color: dimgrey; margin: 0 0 5px;'>&#128151; 0 &nbsp; &#128257; 0 &nbsp; &#128172; 0</h6>";
                 // Check if there are any likes for the post with POSTID equal to $row['ID']
 $query_check_likes = "SELECT COUNT(*) AS like_count FROM POSTMETRICS WHERE POSTID = " . $row['ID'] . " AND Likes = 1";
@@ -251,6 +252,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td colspan='2' style='border: none; padding: 5px; background-color: white;'>";
         echo "<h4 style='margin: 0 0 5px 0;'>". $row['TITLECONTENT'] . "</h4>";
         echo "<h4 style='margin: 0 0 5px 0;'>". $row['IMAGEURL'] . "</h4>";
+        // include "displayPosts.php";
         // echo "<h6 style='color: dimgrey; margin: 0 0 5px;'>&#128151; 0 &nbsp; &#128257; 0 &nbsp; &#128172; 0</h6>";
         // Check if there are any likes for the post with POSTID equal to $row['ID']
 $query_check_likes = "SELECT COUNT(*) AS like_count FROM POSTMETRICS WHERE POSTID = " . $row['ID'] . " AND Likes = 1";
@@ -343,7 +345,7 @@ echo '</form></div>';
 }
 
 
-
+include "displayPosts.php";
 ?>
 
 </div>
